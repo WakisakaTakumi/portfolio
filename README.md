@@ -7,6 +7,8 @@ Feature：
 ・2のキャラクタが1のキャラクタを追跡  
 ・衝突が発生すると2のキャラクタをランダムな位置に再配置  
 ・1のキャラクタは斜め移動が可能、2のキャラクタは斜め移動が不可能  
-![image](https://user-images.githubusercontent.com/84891390/120137835-23c04300-c210-11eb-90eb-60cdf445fb8b.png)  
+![dijkstra_AI_SS](https://user-images.githubusercontent.com/84891390/120138449-7b12e300-c211-11eb-9c37-87ccadb5d029.png)  
+
+
 
 
