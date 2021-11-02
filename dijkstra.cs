@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ public class dijkstra : MonoBehaviour
     private Vector2 Position;
     float SPEED = 4.0f;
 
-    void FixedUpdate()
+    void FixedUpdate()　//1秒間に50回実行する
     {
         //二次元配列によるマップ
         int[,] map =
@@ -30,14 +30,14 @@ public class dijkstra : MonoBehaviour
                 {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0 },
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
             };
-        //距離の判定
-        Vector2 goal = GameObject.Find("Masha-character-pack-free1_0").transform.position;
-        int x = Mathf.FloorToInt(goal.x);
-        int y = Mathf.FloorToInt(goal.y);
-        y = -y - 1;
-        map[y, x] = 3;
-        rigidBody = GetComponent<Rigidbody2D>();
         
+        Vector2 goal = GameObject.Find("Masha-character-pack-free1_0").transform.position; //目標の座標取得
+        int x = Mathf.FloorToInt(goal.x);　//取得した座標を整数化
+        int y = Mathf.FloorToInt(goal.y);
+        y = -y - 1;　//座標を配列の要素の値に変換
+        map[y, x] = 3;　//目標の位置に3を代入
+        rigidBody = GetComponent<Rigidbody2D>();
+        //距離の計算
         for (int c = 3; c < 100; c++)
         {
             for (int j = 2; j < 20; j++)
@@ -63,14 +63,13 @@ public class dijkstra : MonoBehaviour
             }
         }
         
-        //最短距離取得、移動
-        Vector2 start = GameObject.Find("monster").transform.position;
+        Vector2 start = GameObject.Find("monster").transform.position;　//現在地の座標を取得
         double m = start.x;
         double n = start.y;
-        n = -n;
-        int a = Mathf.FloorToInt(start.y);
+        n = -n;　
+        int a = Mathf.FloorToInt(start.y);　//取得した座標を整数化
         int b = Mathf.FloorToInt(start.x);
-        a = -a - 1;
+        a = -a - 1;　//座標を配列の要素の値に変換
         Debug.Log(a);
         Debug.Log(b);
         if (a >= 12)
@@ -81,10 +80,11 @@ public class dijkstra : MonoBehaviour
             b = 19;
         if (b <= 1)
             b = 2;
-        Position.x = 0;
+        Position.x = 0;　//移動方向のリセット
         Position.y = 0;
         
-        if (m % 1 >=0.4 && m % 1 <= 0.6 && n % 1 >= 0.4 && n % 1 <= 0.6)
+        //最短距離取得、移動
+        if (m % 1 >=0.4 && m % 1 <= 0.6 && n % 1 >= 0.4 && n % 1 <= 0.6)　//障害物との衝突防止のための条件
         {
             if (map[a + 1, b] == map[a, b] - 1)
             {
@@ -111,7 +111,7 @@ public class dijkstra : MonoBehaviour
                 rigidBody.velocity = new Vector2(Position.x * SPEED, Position.y * SPEED);
             }
         }
-        else if(GetComponent<Rigidbody2D>().IsSleeping())
+        else if(GetComponent<Rigidbody2D>().IsSleeping())　//キャラクタが停止した場合、再配置を行う
         {
             double fix_x = m + 0.5;
             double fix_y = -n - 0.5;
