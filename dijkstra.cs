@@ -83,7 +83,7 @@ public class dijkstra : MonoBehaviour
         Position.x = 0;　//移動方向のリセット
         Position.y = 0;
         
-        //最短距離取得、移動
+        //移動方向選択、移動
         if (m % 1 >=0.4 && m % 1 <= 0.6 && n % 1 >= 0.4 && n % 1 <= 0.6)　//障害物との衝突防止のための条件
         {
             if (map[a + 1, b] == map[a, b] - 1)
